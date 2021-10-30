@@ -36,6 +36,7 @@
     <p id="isLoggedIn"><b>isLoggedIn:</b> </p>
 
     <button id="btnMsg" onclick="sendMsg()">Send Message</button>
+    <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
     <button onclick="openWindow()">Open Window</button>
     <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
     <button id="btnClose" onclick="closed()">Close</button>
@@ -141,6 +142,16 @@
         function logOut() {
             liff.logout()
             window.location.reload()
+        }
+
+        // Create function shareMsg()
+        async function shareMsg(){
+            await liff.shareTargetPicker([
+                {
+                    "type": "text",
+                    "text": "This message sent from shareTargetPicker"
+                }
+            ])
         }
         
         // Create async main() function
