@@ -33,6 +33,8 @@
 
     <p id="scanCode"><b>Code:</b> </p>
 
+    <p id="isLoggedIn"><b>isLoggedIn:</b> </p>
+
     <button id="btnMsg" onclick="sendMsg()">Send Message</button>
     <button onclick="openWindow()">Open Window</button>
     <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
@@ -139,10 +141,13 @@
         async function main(){
             // alert("LINE LIFF Starter")
             await liff.init({ liffId: "1656584914-wRLJmRJR" })
-            getEnvironment()
-            getUserProfile()
-            getContext()
-            getFriendship()
+            document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+            if(liff.isLoggedIn()){
+                getEnvironment()
+                getUserProfile()
+                getContext()
+                getFriendship()
+            }
         }
 
         // Call main() function
