@@ -39,7 +39,7 @@
     <button onclick="openWindow()">Open Window</button>
     <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
     <button id="btnClose" onclick="closed()">Close</button>
-    <button id="btnLogOut">Log Out</button>
+    <button id="btnLogOut" onclick="logOut()">Log Out</button>
 
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
@@ -135,6 +135,12 @@
         // Create function closed()
         function closed() {
             liff.closeWindow()
+        }
+
+        // Create function logOut()
+        function logOut() {
+            liff.logout()
+            window.location.reload()
         }
         
         // Create async main() function
