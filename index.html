@@ -32,6 +32,7 @@
     <p id="friendship"><b>isFriendship:</b> </p>
 
     <button id="btnMsg" onclick="sendMsg()">Send Message</button>
+    <button onclick="openWindow()">Open Window</button>
     <button id="btnScanCode">Scan Code</button>
     <button id="btnClose">Close</button>
     <button id="btnLogOut">Log Out</button>
@@ -111,6 +112,14 @@
                     window.location = "https://line.me/R/ti/p/@099lezlf"
                 }
             }
+        }
+
+        // Create function openWindow()
+        function openWindow(){
+            liff.openWindow({
+                url: "https://line.me",
+                external: true
+            })
         }
         
         // Create async main() function
