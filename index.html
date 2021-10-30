@@ -21,6 +21,8 @@
     <p id="displayName"><b>displayName:</b> </p>
     <p id="statusMessage"><b>statusMessage:</b> </p>
 
+    <p id="decodedIDToken"><b>email:</b> </p>
+
     <button id="btnMsg">Send Message</button>
     <button id="btnScanCode">Scan Code</button>
     <button id="btnClose">Close</button>
@@ -54,7 +56,7 @@
             document.getElementById("userId").append(profile.userId)
             document.getElementById("displayName").append(profile.displayName)
             document.getElementById("statusMessage").append(profile.statusMessage)
-
+            document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
         }
         
         // Create async main() function
