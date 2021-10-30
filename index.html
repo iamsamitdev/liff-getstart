@@ -8,18 +8,48 @@
     <link rel="stylesheet" href="css/style.css" media="all">
 </head>
 <body>
+    <p id="os"><b>OS:</b> </p>
+    <p id="language"><b>Language:</b> </p>
+    <p id="version"><b>Version:</b> </p>
+    <p id="lineVersion"><b>Version:</b> </p>
+    <p id="accessToken"><b>AccessToken:</b> </p>
+    <p id="isInClient"><b>isInClient:</b> </p>
+
+    <button id="btnMsg">Send Message</button>
+    <button id="btnScanCode">Scan Code</button>
+    <button id="btnClose">Close</button>
+    <button id="btnLogOut">Log Out</button>
 
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
+
+        // Create function getEnvironment()
+        function getEnvironment(){
+            document.getElementById("os").append(liff.getOS())
+            document.getElementById("language").append(liff.getLanguage())
+            document.getElementById("version").append(liff.getVersion())
+            document.getElementById("lineVersion").append(liff.getLineVersion())
+            document.getElementById("accessToken").append(liff.getAccessToken())
+            document.getElementById("isInClient").append(liff.isInClient())
+
+            if(liff.isInClient()){ // ถ้า return เป็น true นั่นคือเปิดใน application line
+                document.getElementById("btnLogOut").style.display = "none" // ซ่อนปุ่ม Log Out
+            }else{ // ถ้าเปิดภายนอก applicaton line หรือเปิด external browser
+                document.getElementById("btnMsg").style.display = "none" // ซ่อนปุ่ม Send Message
+                document.getElementById("btnScanCode").style.display = "none" // ซ่อนปุ่ม Scan Code
+                document.getElementById("btnClose").style.display = "none" // ซ่อนปุ่ม Close
+            }
+        }
         
         // Create async main() function
         async function main(){
-            alert("LINE LIFF Starter")
+            // alert("LINE LIFF Starter")
+            await liff.init({ liffId: "1656584914-wRLJmRJR" })
+            getEnvironment()
         }
 
         // Call main() function
         main()
-
 
     </script>
 </body>
