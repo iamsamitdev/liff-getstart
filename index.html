@@ -29,6 +29,8 @@
     <p id="roomId"><b>roomId:</b> </p>
     <p id="groupId"><b>groupId:</b> </p>
 
+    <p id="friendship"><b>isFriendship:</b> </p>
+
     <button id="btnMsg" onclick="sendMsg()">Send Message</button>
     <button id="btnScanCode">Scan Code</button>
     <button id="btnClose">Close</button>
@@ -88,9 +90,26 @@
                         "type":"sticker",
                         "stickerId":1,
                         "packageId":1
-                    }
+                    },
+                    //{
+                    //    ...
+                    //    ...
+                    //    ...
+                    //}
+                    // สูงสุด 5 bubble
                 ])
                 alert("Message send")
+            }
+        }
+
+        // Create function getFriendship()
+        async function getFriendship(){
+            const friend = await liff.getFriendship() // true, false
+            document.getElementById("friendship").append(friend.friendFlag)
+            if(!friend.friendFlag){
+                if(confirm("คุณยังไม่ได้เพิ่ม bot เป็นเพื่อน จะเพิ่มเลยมั้ย")){
+                    window.location = "https://line.me/R/ti/p/@099lezlf"
+                }
             }
         }
         
@@ -101,6 +120,7 @@
             getEnvironment()
             getUserProfile()
             getContext()
+            getFriendship()
         }
 
         // Call main() function
