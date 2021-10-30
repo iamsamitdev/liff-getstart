@@ -29,7 +29,7 @@
     <p id="roomId"><b>roomId:</b> </p>
     <p id="groupId"><b>groupId:</b> </p>
 
-    <button id="btnMsg">Send Message</button>
+    <button id="btnMsg" onclick="sendMsg()">Send Message</button>
     <button id="btnScanCode">Scan Code</button>
     <button id="btnClose">Close</button>
     <button id="btnLogOut">Log Out</button>
@@ -77,6 +77,21 @@
             document.getElementById("roomId").append(liff.getContext().roomId)
             // แสดงค่า ID ของ Group
             document.getElementById("groupId").append(liff.getContext().groupId)
+        }
+
+        // Create function sendMsg()
+        async function sendMsg() {
+            if(liff.getContext().type !== "none"){
+                await liff.sendMessages([
+                    // ส่งแบบ Sticker
+                    {
+                        "type":"sticker",
+                        "stickerId":1,
+                        "packageId":1
+                    }
+                ])
+                alert("Message send")
+            }
         }
         
         // Create async main() function
