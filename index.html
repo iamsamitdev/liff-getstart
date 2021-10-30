@@ -23,6 +23,12 @@
 
     <p id="decodedIDToken"><b>email:</b> </p>
 
+    <p id="type"><b>type:</b> </p>
+    <p id="viewType"><b>viewType:</b> </p>
+    <p id="utouId"><b>utouId:</b> </p>
+    <p id="roomId"><b>roomId:</b> </p>
+    <p id="groupId"><b>groupId:</b> </p>
+
     <button id="btnMsg">Send Message</button>
     <button id="btnScanCode">Scan Code</button>
     <button id="btnClose">Close</button>
@@ -58,6 +64,20 @@
             document.getElementById("statusMessage").append(profile.statusMessage)
             document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
         }
+
+        // Create function getContext()
+        function getContext() {
+            // แสดงว่ามาจาก One-on-One, Group, Room, none (from external browser)
+            document.getElementById("type").append(liff.getContext().type) 
+            // แสดงว่า LIFF แบบไหน Full , Compact, Tall
+            document.getElementById("viewType").append(liff.getContext().viewType) 
+            // แสดงค่า ID ของห้องแชตที่คุยแบบ One-on-One
+            document.getElementById("utouId").append(liff.getContext().utouId)
+            // แสดงค่า ID ของ Room
+            document.getElementById("roomId").append(liff.getContext().roomId)
+            // แสดงค่า ID ของ Group
+            document.getElementById("groupId").append(liff.getContext().groupId)
+        }
         
         // Create async main() function
         async function main(){
@@ -65,6 +85,7 @@
             await liff.init({ liffId: "1656584914-wRLJmRJR" })
             getEnvironment()
             getUserProfile()
+            getContext()
         }
 
         // Call main() function
