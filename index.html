@@ -8,12 +8,18 @@
     <link rel="stylesheet" href="css/style.css" media="all">
 </head>
 <body>
+
     <p id="os"><b>OS:</b> </p>
     <p id="language"><b>Language:</b> </p>
     <p id="version"><b>Version:</b> </p>
     <p id="lineVersion"><b>Version:</b> </p>
     <p id="accessToken"><b>AccessToken:</b> </p>
     <p id="isInClient"><b>isInClient:</b> </p>
+
+    <img id="pictureUrl">
+    <p id="userId"><b>userId:</b> </p>
+    <p id="displayName"><b>displayName:</b> </p>
+    <p id="statusMessage"><b>statusMessage:</b> </p>
 
     <button id="btnMsg">Send Message</button>
     <button id="btnScanCode">Scan Code</button>
@@ -40,12 +46,23 @@
                 document.getElementById("btnClose").style.display = "none" // ซ่อนปุ่ม Close
             }
         }
+
+        // Create function getUserProfile()
+        async function getUserProfile() {
+            const profile = await liff.getProfile()
+            profile.getElementById("pictureUrl").src = profile.pictureUrl
+            profile.getElementById("userId").append(profile.userId)
+            profile.getElementById("displayName").append(profile.displayName)
+            profile.getElementById("statusMessage").append(profile.statusMessage)
+
+        }
         
         // Create async main() function
         async function main(){
             // alert("LINE LIFF Starter")
             await liff.init({ liffId: "1656584914-wRLJmRJR" })
             getEnvironment()
+            getUserProfile()
         }
 
         // Call main() function
