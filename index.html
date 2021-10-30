@@ -31,9 +31,11 @@
 
     <p id="friendship"><b>isFriendship:</b> </p>
 
+    <p id="scanCode"><b>Code:</b> </p>
+
     <button id="btnMsg" onclick="sendMsg()">Send Message</button>
     <button onclick="openWindow()">Open Window</button>
-    <button id="btnScanCode">Scan Code</button>
+    <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
     <button id="btnClose">Close</button>
     <button id="btnLogOut">Log Out</button>
 
@@ -120,6 +122,12 @@
                 url: "https://line.me",
                 external: true
             })
+        }
+
+        // Create function scanCode()
+        async function scanCode(){
+            const result = await liff.scanCode()
+            document.getElementById("scanCode").append(result.value)
         }
         
         // Create async main() function
